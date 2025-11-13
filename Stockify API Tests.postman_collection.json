@@ -1,0 +1,2576 @@
+{
+	"info": {
+		"_postman_id": "f78bb072-aac1-4b41-8d0f-1037590f42e3",
+		"name": "Stockify API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47751913",
+		"_collection_link": "https://patrick-medina-7937084.postman.co/workspace/Curso-Postman~a6062ffb-efe0-404e-a5a3-4eac43266074/collection/47751913-f78bb072-aac1-4b41-8d0f-1037590f42e3?action=share&source=collection_link&creator=47751913"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "1.1 Crear usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Patrick Ricardo\",\n    \"apellido\": \"Medina Reyes\",\n    \"email\": \"patrick@stockify.com\",\n    \"password\": \"PatrickM123\",\n    \"rol\": \"ADMIN\",\n    \"telefono\": 910872694,\n    \"sede\": \"Lima\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.2 Listar usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.3 Obtener por Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.4 Actualizar parcial de usuario",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"patrick.zarate@stockify.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.6. Eliminar usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.5 Actualización total de usuario",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Patrick \",\n    \"apellido\": \"Reyes\",\n    \"email\": \"patrick@stockify.com\",\n    \"password\": \"PatrickM1234\",\n    \"rol\": \"ADMIN\",\n    \"telefono\": 910872695,\n    \"sede\": \"Lima\",\n    \"activo\": true\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "2.1 Crear producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Aceite Vegetal\",\n  \"descripcion\": \"Aceite de cocina refinado de girasol\",\n  \"unidadMedida\": \"Litros\",\n  \"categoria\": \"Alimentos\",\n  \"stockMinimo\": 50,\n  \"stockActual\": 120,\n  \"activo\": true\n}\n\n/*\n{\n  \"nombre\": \"Arroz Extra\",\n  \"descripcion\": \"Arroz blanco de alta calidad\",\n  \"unidadMedida\": \"Kg\",\n  \"categoria\": \"Alimentos\",\n  \"stockMinimo\": 50,\n  \"stockActual\": 200,\n  \"activo\": true\n}\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.2 Listar todos los productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.3 Obtener productos por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/productos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.4 Actualizar producto completo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Aceite Vegetal Premium\",\n  \"descripcion\": \"Aceite 100% orgánico refinado\",\n  \"unidadMedida\": \"Litros\",\n  \"categoria\": \"Alimentos Saludables\",\n  \"stockMinimo\": 40,\n  \"stockActual\": 200,\n  \"activo\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/productos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.5 Actualizar producto parcial",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"stockActual\": 250\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/productos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.6 Filtrar productos por categoría y/o estado",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// GET /productos/filtrar?activo=true\n// GET /productos/filtrar?categoria=Alimentos&activo=true",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/productos/filtrar?categoria=Alimentos Saludables",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos",
+								"filtrar"
+							],
+							"query": [
+								{
+									"key": "categoria",
+									"value": "Alimentos Saludables"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.7 Listar productos por estado",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/productos/activo?activo=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos",
+								"activo"
+							],
+							"query": [
+								{
+									"key": "activo",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.8 Eliminar producto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/productos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Almacen",
+			"item": [
+				{
+					"name": "3.1 Crear un nuevo almacén",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n    \"nombre\": \"Almacén Lima Centro\",\n    \"ubicacion\": \"Av. Argentina 999, Lima\",\n    \"responsable\": \"María Rodríguez\",\n    \"capacidadMaxima\": 3000\n  }\n\n  /*\n  {\n    \"nombre\": \"Depósito Norte\",\n    \"ubicacion\": \"Trujillo, zona industrial Mz B Lt 2\",\n    \"responsable\": \"Ana López\",\n    \"capacidadMaxima\": 1800\n  }\n\n  {\n    \"nombre\": \"Depósito Sur\",\n    \"ubicacion\": \"Arequipa, Parque Industrial Sur\",\n    \"responsable\": \"Luis Díaz\",\n    \"capacidadMaxima\": 2200\n  }\n\n  {\n    \"nombre\": \"Almacén Lima Centro\",\n    \"ubicacion\": \"Av. Argentina 999, Lima\",\n    \"responsable\": \"María Rodríguez\",\n    \"capacidadMaxima\": 3000\n  }\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/almacenes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"almacenes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.2 Obtener todos los almacenes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/almacenes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"almacenes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.3 Obtener un almacén por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/almacenes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"almacenes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.4 Filtro de almacenes activos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/almacenes/activos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"almacenes",
+								"activos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.5 Búsqueda flexible por nombre",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/almacenes/buscar?nombre=Norte",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"almacenes",
+								"buscar"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Norte"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.6 Administración rápida de activación/ desactivación",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/almacenes/1/estado?activo=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"almacenes",
+								"1",
+								"estado"
+							],
+							"query": [
+								{
+									"key": "activo",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.7 Actualización parcial",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"responsable\": \"Ricardo Zárate Quispe\",\n  \"capacidadMaxima\": 3000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/almacenes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"almacenes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.8 Eliminación de almacén",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/almacenes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"almacenes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Receta Base",
+			"item": [
+				{
+					"name": "4.1 Crear receta base",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombrePlato\": \"Ensalada Simple\",\n  \"descripcion\": \"Ensalada de tomate y lechuga\",\n  \"porcionesBase\": 2,\n  \"unidadPorcion\": \"plato\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/recetas-base",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recetas-base"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.2 Obtener recetas bases",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/recetas-base",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recetas-base"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.3 Obtener receta base por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/recetas-base/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recetas-base",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.4 Actualización parcial de receta base",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"nombrePlato\": \"Ensalada Cesar\",\n        \"descripcion\": \"Ensalada de tomate, lechuga y limón\",\n        \"porcionesBase\": 3\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/recetas-base/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recetas-base",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.5 Eliminar receta - base por ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/recetas-base/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recetas-base",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Receta Detalle",
+			"item": [
+				{
+					"name": "5.0 Productos de prueba",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Pepino\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 4.0\n}\n/*\n{\n  \"nombre\": \"Tomate\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 5.0\n}\n\n{\n  \"nombre\": \"Lechuga\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 3.0\n}\n\n{\n  \"nombre\": \"Pepino\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 4.0\n}\n\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.0 Receta base de prueba",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombrePlato\": \"Ensalada Simple\",\n  \"descripcion\": \"Ensalada de tomate, lechuga y pepino\",\n  \"porcionesBase\": 2,\n  \"unidadPorcion\": \"plato\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/recetas-base",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recetas-base"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.1 Agregar una 'receta-detalle\"",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"recetaBaseId\": 1,\n  \"productoId\": 1,\n  \"cantidadNecesaria\": 0.5,\n  \"unidadMedida\": \"kg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/recetas-detalle",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recetas-detalle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.2 Agregar varias \"receta-detalle\"",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ingredientes\": [\n    {\n      \"recetaBaseId\": 1,\n      \"productoId\": 3,\n      \"cantidadNecesaria\": 0.2,\n      \"unidadMedida\": \"kg\"\n    },\n    {\n      \"recetaBaseId\": 1,\n      \"productoId\": 1,\n      \"cantidadNecesaria\": 0.1,\n      \"unidadMedida\": \"kg\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/recetas-detalle/bulk",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recetas-detalle",
+								"bulk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.3 Actualizar un \"receta-detalle\"",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cantidadNecesaria\": 0.4,\n  \"unidadMedida\": \"kg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/recetas-detalle/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recetas-detalle",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.5 Eliminar receta detalle",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " "
+						},
+						"url": {
+							"raw": "http://localhost:8080/recetas-detalle/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recetas-detalle",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.4 Listar todos los ingredientes de una receta - base",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/recetas-detalle/receta/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recetas-detalle",
+								"receta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movimiento",
+			"item": [
+				{
+					"name": "6.0 Producto de prueba",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Tomate\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 5.0\n}\n\n/*\n{\n  \"nombre\": \"Tomate\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 5.0\n}\n\n{\n  \"nombre\": \"Lechuga\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 3.0\n}\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6.0 Almacen de prueba",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Almacén Principal\",\n  \"ubicacion\": \"Chilca\",\n  \"capacidadMaxima\": 1000,\n  \"responsable\": \"María Rodríguez\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/almacenes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"almacenes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6.0 Receta base de prueba",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombrePlato\": \"Ensalada Simple\",\n  \"descripcion\": \"Ensalada de tomate y lechuga\",\n  \"porcionesBase\": 2,\n  \"unidadPorcion\": \"plato\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/recetas-base",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recetas-base"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6.0 Recetas detalle de prueba",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ingredientes\": [\n        {\n            \"recetaBaseId\": 1,\n            \"productoId\": 1,\n            \"cantidadNecesaria\": 0.5,\n            \"unidadMedida\": \"kg\"\n        },\n        {\n            \"recetaBaseId\": 1,\n            \"productoId\": 2,\n            \"cantidadNecesaria\": 0.3,\n            \"unidadMedida\": \"kg\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/recetas-detalle/bulk",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recetas-detalle",
+								"bulk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6.1 Registrar entrada de stock",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipoMovimiento\": \"ENTRADA\",\n  \"cantidad\": 10.0,\n  \"costoUnitario\": 5.0,\n  \"observacion\": \"Compra de tomates\",\n  \"origen\": \"Proveedor A\",\n  \"productoId\": 1,\n  \"almacenId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movimientos/entrada",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movimientos",
+								"entrada"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6.2 Registrar salida manual de stock",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipoMovimiento\": \"SALIDA\",\n  \"cantidad\": 3.0,\n  \"costoUnitario\": 5.0,\n  \"observacion\": \"Uso en cocina\",\n  \"origen\": \"Cocina\",\n  \"productoId\": 1,\n  \"almacenId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movimientos/salida-manual",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movimientos",
+								"salida-manual"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6.3 Registrar salida por receta",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"porciones\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movimientos/salida-receta/1?porciones=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movimientos",
+								"salida-receta",
+								"1"
+							],
+							"query": [
+								{
+									"key": "porciones",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6.4 Obtener todos los movimientos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipoMovimiento\": \"ENTRADA\",\n  \"cantidad\": 10.0,\n  \"costoUnitario\": 5.0,\n  \"observacion\": \"Compra de tomates\",\n  \"origen\": \"Proveedor A\",\n  \"productoId\": 1,\n  \"almacenId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/movimientos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6.5 Obtener movimiento por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipoMovimiento\": \"ENTRADA\",\n  \"cantidad\": 10.0,\n  \"costoUnitario\": 5.0,\n  \"observacion\": \"Compra de tomates\",\n  \"origen\": \"Proveedor A\",\n  \"productoId\": 1,\n  \"almacenId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/movimientos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movimientos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6.6 Filtra movimientos por tipo, producto o fechas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movimientos/filtrar?tipo=SALIDA&desde=2025-10-01T00:00:00&hasta=2025-10-31T23:59:59",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movimientos",
+								"filtrar"
+							],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "SALIDA"
+								},
+								{
+									"key": "desde",
+									"value": "2025-10-01T00:00:00"
+								},
+								{
+									"key": "hasta",
+									"value": "2025-10-31T23:59:59"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6.7 Lista todos los movimientos asociados a un lote",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ /movimientos/lote/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								" ",
+								"movimientos",
+								"lote",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6.8 Anula un movimiento existente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movimientos/anular/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movimientos",
+								"anular",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6.9 Eliminar movimiento por ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipoMovimiento\": \"ENTRADA\",\n  \"cantidad\": 10.0,\n  \"costoUnitario\": 5.0,\n  \"observacion\": \"Compra de tomates\",\n  \"origen\": \"Proveedor A\",\n  \"productoId\": 1,\n  \"almacenId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/movimientos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movimientos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lote",
+			"item": [
+				{
+					"name": "7.0 Almancen de prueba",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Almacén Lima Centro\",\n    \"ubicacion\": \"Av. Argentina 999, Lima\",\n    \"responsable\": \"María Rodríguez\",\n    \"capacidadMaxima\": 3000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/almacenes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"almacenes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7.0 Producto de prueba",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Arroz Integral\",\n  \"descripcion\": \"Paquete de 5 kg\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 12.50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7.1 Crear lotes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigoLote\": \"L001\",\n  \"costoUnitario\": 10.0,\n  \"costoTotal\": 100.0,\n  \"cantidadInicial\": 10.0,\n  \"cantidadDisponible\": 10.0,\n  \"fechaCompra\": \"2025-10-27 10:00:00\",\n  \"fechaVencimiento\": \"2025-12-31 23:59:59\",\n  \"producto\": { \"id\": 1 },\n  \"almacen\": { \"id\": 1 },\n  \"estado\": \"ACTIVO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/lotes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lotes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7.2 Actualizar lote completo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigoLote\": \"L001-A\",\n  \"costoUnitario\": 11.0,\n  \"costoTotal\": 110.0,\n  \"cantidadInicial\": 10.0,\n  \"cantidadDisponible\": 10.0,\n  \"fechaCompra\": \"2025-10-27 10:00:00\",\n  \"fechaVencimiento\": \"2026-01-31 23:59:59\",\n  \"producto\": { \"id\": 1 },\n  \"almacen\": { \"id\": 1 },\n  \"estado\": \"ACTIVO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/lotes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lotes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7.3 Actualización parcial",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cantidadDisponible\": 8.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/lotes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lotes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7.4 Obtener todos los lotes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipoMovimiento\": \"ENTRADA\",\n  \"cantidad\": 10.0,\n  \"costoUnitario\": 5.0,\n  \"observacion\": \"Compra de tomates\",\n  \"origen\": \"Proveedor A\",\n  \"productoId\": 1,\n  \"almacenId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/lotes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lotes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7.5 Obtener por ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/lotes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lotes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7.6 Obtener lotes por producto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/lotes/producto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lotes",
+								"producto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7.7 Obtener lotes disponibles FIFO",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/lotes/disponibles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lotes",
+								"disponibles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7.8 Obtener lotes próximos a vencer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/lotes/vencimiento?dias=30",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lotes",
+								"vencimiento"
+							],
+							"query": [
+								{
+									"key": "dias",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Crear primero:\n\nProducto  \nAlmacén"
+		},
+		{
+			"name": "Alerta Stock",
+			"item": [
+				{
+					"name": "8.0 Crear producto de prueba",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Arroz Integral\",\n  \"descripcion\": \"Paquete de 5 kg\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 12.50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8.0 Crear almacén de prueba",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Almacen Central\",\n  \"ubicacion\": \"Av. Siempre Viva 123\",\n  \"responsable\": \"María Lucila\",\n  \"capacidadMaxima\": 1000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/almacenes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"almacenes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8.1 Crear alerta",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productoId\": 1,\n  \"prioridad\": \"ALTA\",\n  \"fechaAlerta\": \"2025-10-27T09:00:00\",\n  \"atendido\": false,\n  \"mensaje\":\"Necesita reponer Stock\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/alertas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alertas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8.2  Actualizar alerta",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productoId\": 1,\n  \"prioridad\": \"MEDIA\",\n  \"fechaAlerta\": \"2025-10-27T10:00:00\",\n  \"atendido\": false,\n  \"mensaje\":\"Renovar Stock\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/alertas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alertas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8.3 Obtener todas las alertas",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alertas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alertas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8.4 Obtener alerta por ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alertas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alertas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8.5 Obtener alertas pendientes",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alertas/pendientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alertas",
+								"pendientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8.6  Obtener alertas atendidas",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alertas/atendidas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alertas",
+								"atendidas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8.7 Obtener alertas por prioridad",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alertas/prioridad/MEDIA",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alertas",
+								"prioridad",
+								"MEDIA"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8.8 Marcar una alerta como atendida",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alertas/1/atender",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alertas",
+								"1",
+								"atender"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8.9  Eliminar una alerta",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alertas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alertas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8.10  Eliminar todas las alertas atendidas",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/alertas/limpiar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alertas",
+								"limpiar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Valorización Periodo",
+			"item": [
+				{
+					"name": "Datos base",
+					"item": [
+						{
+							"name": "Crear Usuario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\": \"Patrick Ricardo\",\n    \"apellido\": \"Medina Reyes\",\n    \"email\": \"patrick@stockify.com\",\n    \"password\": \"PatrickM123\",\n    \"rol\": \"ADMIN\",\n    \"telefono\": 910872694,\n    \"sede\": \"Lima\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/usuarios",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Producto",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nombre\": \"Aceite Vegetal\",\n  \"descripcion\": \"Botella de 1 litro\",\n  \"unidadMedida\": \"litro\",\n  \"precioUnitario\": 10.50\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/productos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"productos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Almacén",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\": \"Almacén Central\",\n    \"ubicacion\": \"Av. Los Olivos 123, Lima\",\n    \"responsable\": \"María Rodríguez\",\n    \"capacidadMaxima\": 1000\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/almacenes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"almacenes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear lote",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"codigoLote\": \"L001\",\n  \"costoUnitario\": 9.5,\n  \"costoTotal\": 950.0,\n  \"cantidadInicial\": 100.0,\n  \"cantidadDisponible\": 100.0,\n  \"fechaCompra\": \"2025-10-01 09:00:00\",\n  \"fechaVencimiento\": \"2026-10-01 09:00:00\",\n  \"producto\": { \"id\": 1 },\n  \"almacen\": { \"id\": 1 },\n  \"estado\": \"ACTIVO\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/lotes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"lotes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar manualmente el stockActual",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nombre\": \"Aceite Vegetal\",\n  \"descripcion\": \"Botella de 1 litro\",\n  \"unidadMedida\": \"litro\",\n  \"precioUnitario\": 10.50,\n  \"stockActual\": 100.0,\n  \"categoria\": \"Insumo\",\n  \"activo\":true,\n  \"stockMinimo\": 10.0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/productos/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"productos",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Movimiento de Salida",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"productoId\": 1,\n  \"almacenId\": 1,\n  \"cantidad\": 5.0,\n  \"costoUnitario\": 9.5,\n  \"tipoMovimiento\": \"SALIDA\",\n  \"fechaMovimiento\": \"2025-10-15T14:30:00\",\n  \"usuarioId\": 1,\n  \"observacion\": \"Venta\",\n  \"origen\": \"Cliente B\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/movimientos/salida-manual",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"movimientos",
+										"salida-manual"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Movimiento de Entrada",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"productoId\": 1,\n  \"almacenId\": 1,\n  \"cantidad\": 100.0,\n  \"costoUnitario\": 9.5,\n  \"tipoMovimiento\": \"ENTRADA\",\n  \"fechaMovimiento\": \"2025-10-02T10:00:00\",\n  \"usuarioId\": 1,\n  \"observacion\": \"Compra inicial\",\n  \"origen\": \"Proveedor A\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/movimientos/entrada",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"movimientos",
+										"entrada"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "9.1 Ejecutar valorización del periodo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"periodo\": \"2025-10\",\n  \"metodoValorizacion\": \"FIFO\",\n  \"usuarioId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/valorizaciones/ejecutar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valorizaciones",
+								"ejecutar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9.2  Listar todas las valorizaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/valorizaciones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valorizaciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9.3 Obtener valorización por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/valorizaciones/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valorizaciones",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9.4 Obtener valorización actual",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/valorizaciones/actual",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valorizaciones",
+								"actual"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9.5 Listar métodos disponibles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/valorizaciones/metodos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valorizaciones",
+								"metodos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9.6  Obtener valorización por producto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/valorizaciones/producto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valorizaciones",
+								"producto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9.7 Cerrar valorización",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"observaciones\": \"Periodo cerrado luego de revisión contable\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/valorizaciones/1/cerrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valorizaciones",
+								"1",
+								"cerrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9.8 Eliminar valorización",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipoMovimiento\": \"ENTRADA\",\n  \"cantidad\": 10.0,\n  \"costoUnitario\": 5.0,\n  \"observacion\": \"Compra de tomates\",\n  \"origen\": \"Proveedor A\",\n  \"productoId\": 1,\n  \"almacenId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/valorizaciones/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valorizaciones",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9.9 Eliminar valorizaciones antiguas",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Aceite Vegetal\",\n  \"descripcion\": \"Botella de 1 litro\",\n  \"unidadMedida\": \"litro\",\n  \"precioUnitario\": 10.50,\n  \"stockActual\": 100.0,\n  \"categoria\": \"Insumo\",\n  \"activo\":true,\n  \"stockMinimo\": 10.0\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/valorizaciones/limpiar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valorizaciones",
+								"limpiar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reporte",
+			"item": [
+				{
+					"name": "10.1 Generar reporte PDF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reportes/pdf?periodo=2025-10&usuarioId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reportes",
+								"pdf"
+							],
+							"query": [
+								{
+									"key": "periodo",
+									"value": "2025-10"
+								},
+								{
+									"key": "usuarioId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10.2  Ver todos los reportes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reportes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reportes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10.3 Consultar un reporte por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reportes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reportes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10.0 Crear Usuario de prueba",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Patrick Ricardo\",\n    \"apellido\": \"Medina Reyes\",\n    \"email\": \"patrick@stockify.com\",\n    \"password\": \"PatrickM123\",\n    \"rol\": \"ADMIN\",\n    \"telefono\": 910872694,\n    \"sede\": \"Lima\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10.0  Crear Producto de prueba",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Aceite Vegetal\",\n  \"descripcion\": \"Botella de 1 litro\",\n  \"unidadMedida\": \"litro\",\n  \"precioUnitario\": 10.5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10.0 Crear Lote de prueba",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigoLote\": \"L001\",\n  \"costoUnitario\": 9.5,\n  \"costoTotal\": 950.0,\n  \"cantidadInicial\": 100.0,\n  \"cantidadDisponible\": 100.0,\n  \"fechaCompra\": \"2025-10-01 10:00:00\",\n  \"fechaVencimiento\": \"2026-10-01 10:00:00\",\n  \"producto\": { \"id\": 1 },\n  \"almacen\": { \"id\": 1 },\n  \"estado\": \"ACTIVO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/lotes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lotes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10.0 Crear una valorización",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"periodo\": \"2025-10\",\n  \"metodoValorizacion\": \"FIFO\",\n  \"usuarioId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/valorizaciones/ejecutar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valorizaciones",
+								"ejecutar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10.0 Crear almacén",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n    \"nombre\": \"Almacén Lima Centro\",\n    \"ubicacion\": \"Av. Argentina 999, Lima\",\n    \"responsable\": \"María Rodríguez\",\n    \"capacidadMaxima\": 3000\n  }\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/almacenes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"almacenes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
