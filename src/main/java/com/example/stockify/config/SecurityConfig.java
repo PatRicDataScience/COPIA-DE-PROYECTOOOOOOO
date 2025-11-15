@@ -1,3 +1,4 @@
+// language: java
 package com.example.stockify.config;
 
 import com.example.stockify.auth.components.JwtAuthorizationFilter;
@@ -36,11 +37,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-//    @Bean
-//    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-//        return config.getAuthenticationManager();
-//    }
-
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
@@ -50,11 +46,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // quitar http.cors() para evitar la API deprecada
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(
-                        manager -> manager.sessionCreationPolicy(STATELESS)
-                )
+                .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
                         .anyRequest().authenticated()
