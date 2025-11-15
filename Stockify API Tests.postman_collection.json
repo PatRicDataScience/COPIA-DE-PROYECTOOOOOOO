@@ -1646,7 +1646,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE3MDc5MywiZXhwIjoxNzYzMTc0MzkzfQ.cdO9s5Dsvu9UKK7pEZcYaHSDue9-ubGmJAMyfz8jAbu8nPvCe5LaAMAt6aqS8nVo4psPOww0CBoE9brxUmO5rw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3NTk3MSwiZXhwIjoxNzYzMTc5NTcxfQ.HB9VE72AezExsDoE-8CV6KyIlayJns3xmv8SMETMeNb44Q7YtzGnRSc4423yfdT-MDA6tI4ziboAYazPVp0qxg",
 									"type": "string"
 								}
 							]
@@ -1680,7 +1680,14 @@
 					"name": "8.2  Actualizar alerta",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3NTk3MSwiZXhwIjoxNzYzMTc5NTcxfQ.HB9VE72AezExsDoE-8CV6KyIlayJns3xmv8SMETMeNb44Q7YtzGnRSc4423yfdT-MDA6tI4ziboAYazPVp0qxg",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [],
@@ -2175,6 +2182,16 @@
 				{
 					"name": "9.3 Obtener valorización por ID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3NTk3MSwiZXhwIjoxNzYzMTc5NTcxfQ.HB9VE72AezExsDoE-8CV6KyIlayJns3xmv8SMETMeNb44Q7YtzGnRSc4423yfdT-MDA6tI4ziboAYazPVp0qxg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2215,6 +2232,16 @@
 				{
 					"name": "9.5 Listar métodos disponibles",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3NTk3MSwiZXhwIjoxNzYzMTc5NTcxfQ.HB9VE72AezExsDoE-8CV6KyIlayJns3xmv8SMETMeNb44Q7YtzGnRSc4423yfdT-MDA6tI4ziboAYazPVp0qxg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2257,7 +2284,14 @@
 					"name": "9.7 Cerrar valorización",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3NTk3MSwiZXhwIjoxNzYzMTc5NTcxfQ.HB9VE72AezExsDoE-8CV6KyIlayJns3xmv8SMETMeNb44Q7YtzGnRSc4423yfdT-MDA6tI4ziboAYazPVp0qxg",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [],
@@ -2289,11 +2323,26 @@
 				{
 					"name": "9.8 Eliminar valorización",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3NTk3MSwiZXhwIjoxNzYzMTc5NTcxfQ.HB9VE72AezExsDoE-8CV6KyIlayJns3xmv8SMETMeNb44Q7YtzGnRSc4423yfdT-MDA6tI4ziboAYazPVp0qxg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"tipoMovimiento\": \"ENTRADA\",\n  \"cantidad\": 10.0,\n  \"costoUnitario\": 5.0,\n  \"observacion\": \"Compra de tomates\",\n  \"origen\": \"Proveedor A\",\n  \"productoId\": 1,\n  \"almacenId\": 1\n}"
+							"raw": "{\n  \"tipoMovimiento\": \"ENTRADA\",\n  \"cantidad\": 10.0,\n  \"costoUnitario\": 5.0,\n  \"observacion\": \"Compra de tomates\",\n  \"origen\": \"Proveedor A\",\n  \"productoId\": 1,\n  \"almacenId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8080/valorizaciones/1",
@@ -2345,6 +2394,16 @@
 				{
 					"name": "10.1 Generar reporte PDF",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3NTk3MSwiZXhwIjoxNzYzMTc5NTcxfQ.HB9VE72AezExsDoE-8CV6KyIlayJns3xmv8SMETMeNb44Q7YtzGnRSc4423yfdT-MDA6tI4ziboAYazPVp0qxg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2375,6 +2434,16 @@
 				{
 					"name": "10.2  Ver todos los reportes",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3NTk3MSwiZXhwIjoxNzYzMTc5NTcxfQ.HB9VE72AezExsDoE-8CV6KyIlayJns3xmv8SMETMeNb44Q7YtzGnRSc4423yfdT-MDA6tI4ziboAYazPVp0qxg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2394,6 +2463,16 @@
 				{
 					"name": "10.3 Consultar un reporte por ID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3NTk3MSwiZXhwIjoxNzYzMTc5NTcxfQ.HB9VE72AezExsDoE-8CV6KyIlayJns3xmv8SMETMeNb44Q7YtzGnRSc4423yfdT-MDA6tI4ziboAYazPVp0qxg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
