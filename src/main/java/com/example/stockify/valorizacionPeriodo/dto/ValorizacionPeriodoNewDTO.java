@@ -25,6 +25,7 @@ public class ValorizacionPeriodoNewDTO {
     @Positive(message = "El ID del usuario debe ser positivo")
     private Long usuarioId;
 
+    /*
     @NotNull(message = "El valor del inventario es obligatorio")
     @Positive(message = "El valor del inventario debe ser positivo")
     private Double valorInventario;
@@ -35,4 +36,6 @@ public class ValorizacionPeriodoNewDTO {
 
     @Size(max = 255, message = "Las observaciones no pueden superar los 255 caracteres")
     private String observaciones;
+
+     */
 }
