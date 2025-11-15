@@ -220,6 +220,109 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "1.6 Crear Foto de Perfil",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE4NTQ4OSwiZXhwIjoxNzYzMTg5MDg5fQ.XaICzXJK0Kdqya0KIfsY6mF_T7hR4mdnS-pluueX341GGByWFjUktfMoOCiEHi8vSEwMeWGJJsBnGYU45eBFzQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "foto",
+									"type": "file",
+									"src": "/home/nayeliguerrero/Descargas/perfil1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/2/foto-perfil",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"2",
+								"foto-perfil"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.7 Obtner Foto de Perfil",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwYXRyaWNrQHN0b2NraWZ5LmNvbSIsInJvbGVzIjpbIlJPTEVfQ09DSU5FUk8iXSwiaWF0IjoxNzYzMTgzNDM2LCJleHAiOjE3NjMxODcwMzZ9.bhziLPbdiBY3HfUe8FubA8KR0VhUZn0xVmHqMsmzNXNa5dkh3EWdicPaEkwSdOtyrShJrCZBbHGCYv903UdLyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuarios/2/foto-perfil",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"2",
+								"foto-perfil"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.8 Eliminar Foto de Perfil",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwYXRyaWNrQHN0b2NraWZ5LmNvbSIsInJvbGVzIjpbIlJPTEVfQ09DSU5FUk8iXSwiaWF0IjoxNzYzMTgzNDM2LCJleHAiOjE3NjMxODcwMzZ9.bhziLPbdiBY3HfUe8FubA8KR0VhUZn0xVmHqMsmzNXNa5dkh3EWdicPaEkwSdOtyrShJrCZBbHGCYv903UdLyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuarios/2/foto-perfil",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"2",
+								"foto-perfil"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -234,7 +337,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3MDM0OCwiZXhwIjoxNzYzMTczOTQ4fQ.oWFzr_0DG-nM44Z3lOPnrh-jaoH3cePUyRk6Xy5_3yZ8vZsq4M4dmO1CUJe6vkOyYkcwzn-_9PG5U0TdEslFdg",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE4MTUzMywiZXhwIjoxNzYzMTg1MTMzfQ.MOkrPYVVxA7EpnbU0Gnd7hOPTgLiapslWdgpIvMKuT8SoPAK_n4QRp7zah2S8OUgvBKNVmgLpVjDdTVKKBVafw",
 									"type": "string"
 								}
 							]
@@ -251,10 +354,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/productos",
+							"raw": "http://98.82.131.20:8080/productos",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"98",
+								"82",
+								"131",
+								"20"
 							],
 							"port": "8080",
 							"path": [
@@ -1646,7 +1752,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3NTk3MSwiZXhwIjoxNzYzMTc5NTcxfQ.HB9VE72AezExsDoE-8CV6KyIlayJns3xmv8SMETMeNb44Q7YtzGnRSc4423yfdT-MDA6tI4ziboAYazPVp0qxg",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE4MTUzMywiZXhwIjoxNzYzMTg1MTMzfQ.MOkrPYVVxA7EpnbU0Gnd7hOPTgLiapslWdgpIvMKuT8SoPAK_n4QRp7zah2S8OUgvBKNVmgLpVjDdTVKKBVafw",
 									"type": "string"
 								}
 							]
@@ -1663,10 +1769,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/alertas",
+							"raw": "http://98.82.131.20:8080/alertas",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"98",
+								"82",
+								"131",
+								"20"
 							],
 							"port": "8080",
 							"path": [
@@ -2542,10 +2651,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/auth/signin",
+							"raw": "http://98.82.131.20:8080/auth/signin",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"98",
+								"82",
+								"131",
+								"20"
 							],
 							"port": "8080",
 							"path": [
