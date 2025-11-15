@@ -9,6 +9,7 @@ import com.example.stockify.producto.infrastructure.ProductoRepository;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,26 +20,29 @@ public class AlertaStockService {
     private final AlertaStockRepository alertaStockRepository;
     private final ProductoRepository productoRepository;
     private final ModelMapper modelMapper;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     public AlertaStockService(ModelMapper modelMapper,
                               AlertaStockRepository alertaStockRepository,
-                              ProductoRepository productoRepository) {
+                              ProductoRepository productoRepository,
+                              ApplicationEventPublisher applicationEventPublisher) {
         this.modelMapper = modelMapper;
         this.alertaStockRepository = alertaStockRepository;
         this.productoRepository = productoRepository;
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     public List<AlertaStockRequestDTO> findAll() {
         return alertaStockRepository.findAll()
                 .stream()
-                .map(a -> mapToDTO(a))
+                .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
 
     public List<AlertaStockRequestDTO> findPendientes() {
         return alertaStockRepository.findByAtendidoFalse()
                 .stream()
-                .map(a -> mapToDTO(a))
+                .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
 
@@ -57,6 +61,8 @@ public class AlertaStockService {
         alerta.setAtendido(false);
 
         alertaStockRepository.save(alerta);
+
+        applicationEventPublisher.publishEvent(new AlertaStockCreadaEvent(alerta));
 
         return mapToDTO(alerta);
     }
@@ -95,6 +101,9 @@ public class AlertaStockService {
         alerta.setAtendido(dto.getAtendido() != null ? dto.getAtendido() : alerta.getAtendido());
 
         alertaStockRepository.save(alerta);
+
+        applicationEventPublisher.publishEvent(new AlertaStockCreadaEvent(alerta));
+
 
         return mapToDTO(alerta);
     }
