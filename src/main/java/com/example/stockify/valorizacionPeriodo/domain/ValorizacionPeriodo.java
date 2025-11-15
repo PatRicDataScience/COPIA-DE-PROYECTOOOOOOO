@@ -2,7 +2,7 @@ package com.example.stockify.valorizacionPeriodo.domain;
 
 import com.example.stockify.usuario.domain.Usuario;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -22,11 +22,11 @@ public class ValorizacionPeriodo {
     @Column(name = "metodo_valorizacion", nullable = false, length = 20)
     private MetodoValorizacion metodoValorizacion;
 
-    @Positive
+    @PositiveOrZero(message = "El valor del inventario debe ser mayor o igual a 0")
     @Column(name = "valor_inventario", nullable = false)
     private Double valorInventario;
 
-    @Positive
+    @PositiveOrZero(message = "El costo de ventas debe ser mayor o igual a 0")
     @Column(name = "costo_ventas", nullable = false)
     private Double costoVentas;
 
