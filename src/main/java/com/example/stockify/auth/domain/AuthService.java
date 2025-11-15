@@ -50,7 +50,7 @@ public class AuthService {
         usuario.setFechaRegistro(java.time.ZonedDateTime.now());
 
         usuario = usuarioRepository.save(usuario);
-        var token = jwtService.generateToken(usuario);
+        var token = jwtService.generateTokenFromUsuario(usuario);
         return new TokenResponse(token);
     }
 
@@ -73,7 +73,7 @@ public class AuthService {
                 )
         );
 
-        var token = jwtService.generateToken(usuario);
+        var token = jwtService.generateTokenFromUsuario(usuario);
         return new TokenResponse(token);
     }
 }
