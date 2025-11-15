@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerta de Stock - Stockify</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f6f7fb;
+            margin: 0;
+            padding: 24px;
+        }
+        .card {
+            max-width: 640px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        .header {
+            background: {{COLOR_PRIORIDAD}};
+            color: #ffffff;
+            padding: 20px 24px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .body {
+            padding: 24px;
+            color: #1f2937;
+        }
+        .row {
+            margin: 12px 0;
+        }
+        .label {
+            color: #6b7280;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+        }
+        .pill {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: {{COLOR_PRIORIDAD}}22;
+            color: {{COLOR_PRIORIDAD}};
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .footer {
+            padding: 16px 24px;
+            background: #f9fafb;
+            color: #6b7280;
+            font-size: 12px;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+        }
+        .icon {
+            display: inline-block;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <h1>🔔 Alerta de Stock - Stockify</h1>
+        </div>
+        <div class="body">
+            <div class="row">
+                <span class="label">📦 Producto</span>
+                <div class="value">{{PRODUCTO_NOMBRE}} (ID: {{PRODUCTO_ID}})</div>
+            </div>
+
+            <div class="row">
+                <span class="label">💬 Mensaje</span>
+                <div class="value">{{MENSAJE}}</div>
+            </div>
+
+            <div class="row">
+                <span class="label">⚠️ Prioridad</span>
+                <div class="value">
+                    <span class="pill">{{PRIORIDAD}}</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <span class="label">📅 Fecha</span>
+                <div class="value">{{FECHA}}</div>
+            </div>
+
+            <div class="row">
+                <span class="label">📊 Estado</span>
+                <div class="value">{{ESTADO}}</div>
+            </div>
+        </div>
+        <div class="footer">
+            Este es un mensaje automático de <strong>Stockify</strong>.<br>
+            Por favor no responder a este correo.
+        </div>
+    </div>
+</body>
+</html>
+
