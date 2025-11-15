@@ -1,15 +1,22 @@
 package com.example.stockify.usuario.application;
 
+import com.example.stockify.common.service.FileStorageService;
 import com.example.stockify.usuario.domain.UsuarioService;
 import com.example.stockify.usuario.dto.UsuarioNewDTO;
 import com.example.stockify.usuario.dto.UsuarioRequestDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,6 +25,7 @@ import java.util.List;
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+    private final FileStorageService fileStorageService;
 
 //    @PostMapping
 //    public ResponseEntity<UsuarioResponseDTO> crear(@Valid @RequestBody UsuarioNewDTO dto) {
@@ -59,5 +67,41 @@ public class UsuarioController {
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         usuarioService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/{id}/foto-perfil")
+    public ResponseEntity<Map<String, String>> subirFotoPerfil(
+            @PathVariable Long id,
+            @RequestParam("foto") MultipartFile foto) {
+
+        String urlFoto = usuarioService.actualizarFotoPerfil(id, foto);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("mensaje", "Foto de perfil actualizada correctamente");
+        response.put("urlFoto", urlFoto);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{id}/foto-perfil")
+    public ResponseEntity<Resource> obtenerFotoPerfil(@PathVariable Long id) {
+        Resource resource = usuarioService.obtenerFotoPerfil(id);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"perfil.jpg\"")
+                .body(resource);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @DeleteMapping("/{id}/foto-perfil")
+    public ResponseEntity<Map<String, String>> eliminarFotoPerfil(@PathVariable Long id) {
+        usuarioService.eliminarFotoPerfil(id);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("mensaje", "Foto de perfil eliminada correctamente");
+
+        return ResponseEntity.ok(response);
     }
 }

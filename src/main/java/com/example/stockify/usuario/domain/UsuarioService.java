@@ -1,5 +1,6 @@
 package com.example.stockify.usuario.domain;
 
+import com.example.stockify.common.service.FileStorageService;
 import com.example.stockify.excepciones.BadRequestException;
 import com.example.stockify.excepciones.ResourceNotFoundException;
 import com.example.stockify.usuario.dto.UsuarioNewDTO;
@@ -8,11 +9,13 @@ import com.example.stockify.usuario.infrastructure.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.core.io.Resource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,16 +26,19 @@ public class UsuarioService implements UserDetailsService {
     private final UsuarioRepository usuarioRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
+    private final FileStorageService fileStorageService;
 
 
     public UsuarioService(
             UsuarioRepository usuarioRepository,
             ModelMapper modelMapper,
-            @Lazy PasswordEncoder passwordEncoder
+            @Lazy PasswordEncoder passwordEncoder,
+            FileStorageService fileStorageService
     ) {
         this.usuarioRepository = usuarioRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
+        this.fileStorageService = fileStorageService;
     }
 
     public List<UsuarioRequestDTO> findAll() {
@@ -110,6 +116,43 @@ public class UsuarioService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado con el email: " + email));
     }
 
+    public String actualizarFotoPerfil(Long id, MultipartFile foto) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario con ID " + id + " no encontrado"));
 
+        if (usuario.getFotoPerfilPath() != null) {
+            fileStorageService.eliminarArchivo(usuario.getFotoPerfilPath());
+        }
+
+        String nombreArchivo = fileStorageService.guardarArchivo(foto, "perfil_" + id);
+        usuario.setFotoPerfilPath(nombreArchivo);
+        usuario.setFotoPerfilNombre(foto.getOriginalFilename());
+        usuarioRepository.save(usuario);
+
+        return "/usuarios/" + id + "/foto-perfil";
+    }
+
+    public Resource obtenerFotoPerfil(Long id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario con ID " + id + " no encontrado"));
+
+        if (usuario.getFotoPerfilPath() == null) {
+            throw new ResourceNotFoundException("El usuario no tiene foto de perfil");
+        }
+
+        return fileStorageService.cargarArchivo(usuario.getFotoPerfilPath());
+    }
+
+    public void eliminarFotoPerfil(Long id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario con ID " + id + " no encontrado"));
+
+        if (usuario.getFotoPerfilPath() != null) {
+            fileStorageService.eliminarArchivo(usuario.getFotoPerfilPath());
+            usuario.setFotoPerfilPath(null);
+            usuario.setFotoPerfilNombre(null);
+            usuarioRepository.save(usuario);
+        }
+    }
 
 }

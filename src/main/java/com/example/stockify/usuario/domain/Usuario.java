@@ -51,6 +51,12 @@ public class Usuario implements UserDetails {
     @Column(name = "activo")
     private Boolean activo;
 
+    @Column(name = "foto_perfil_path")
+    private String fotoPerfilPath;
+
+    @Column(name = "foto_perfil_nombre")
+    private String fotoPerfilNombre;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + rol.name()));
