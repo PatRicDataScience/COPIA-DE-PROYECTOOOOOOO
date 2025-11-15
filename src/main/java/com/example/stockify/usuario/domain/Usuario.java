@@ -51,11 +51,14 @@ public class Usuario implements UserDetails {
     @Column(name = "activo")
     private Boolean activo;
 
-    @Column(name = "foto_perfil_path")
-    private String fotoPerfilPath;
+    @Column(name = "foto_perfil")
+    private byte[] fotoPerfil;
 
     @Column(name = "foto_perfil_nombre")
     private String fotoPerfilNombre;
+
+    @Column(name = "foto_perfil_tipo")
+    private String fotoPerfilTipo;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

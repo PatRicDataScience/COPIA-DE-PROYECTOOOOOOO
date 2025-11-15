@@ -1,6 +1,5 @@
 package com.example.stockify.usuario.domain;
 
-import com.example.stockify.common.service.FileStorageService;
 import com.example.stockify.excepciones.BadRequestException;
 import com.example.stockify.excepciones.ResourceNotFoundException;
 import com.example.stockify.usuario.dto.UsuarioNewDTO;
@@ -9,7 +8,6 @@ import com.example.stockify.usuario.infrastructure.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.core.io.Resource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,19 +24,16 @@ public class UsuarioService implements UserDetailsService {
     private final UsuarioRepository usuarioRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
-    private final FileStorageService fileStorageService;
 
 
     public UsuarioService(
             UsuarioRepository usuarioRepository,
             ModelMapper modelMapper,
-            @Lazy PasswordEncoder passwordEncoder,
-            FileStorageService fileStorageService
+            @Lazy PasswordEncoder passwordEncoder
     ) {
         this.usuarioRepository = usuarioRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
-        this.fileStorageService = fileStorageService;
     }
 
     public List<UsuarioRequestDTO> findAll() {
@@ -120,37 +115,57 @@ public class UsuarioService implements UserDetailsService {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario con ID " + id + " no encontrado"));
 
-        if (usuario.getFotoPerfilPath() != null) {
-            fileStorageService.eliminarArchivo(usuario.getFotoPerfilPath());
+        if (foto.isEmpty()) {
+            throw new BadRequestException("El archivo está vacío");
         }
 
-        String nombreArchivo = fileStorageService.guardarArchivo(foto, "perfil_" + id);
-        usuario.setFotoPerfilPath(nombreArchivo);
-        usuario.setFotoPerfilNombre(foto.getOriginalFilename());
-        usuarioRepository.save(usuario);
+        if (foto.getSize() > 5242880) {
+            throw new BadRequestException("El archivo excede el tamaño máximo permitido de 5MB");
+        }
 
-        return "/usuarios/" + id + "/foto-perfil";
+        String contentType = foto.getContentType();
+        if (contentType == null || !contentType.startsWith("image/")) {
+            throw new BadRequestException("El archivo debe ser una imagen");
+        }
+
+        try {
+            usuario.setFotoPerfil(foto.getBytes());
+            usuario.setFotoPerfilNombre(foto.getOriginalFilename());
+            usuario.setFotoPerfilTipo(contentType);
+            usuarioRepository.save(usuario);
+
+            return "/usuarios/" + id + "/foto-perfil";
+        } catch (Exception e) {
+            throw new RuntimeException("Error al guardar la foto: " + e.getMessage(), e);
+        }
     }
 
-    public Resource obtenerFotoPerfil(Long id) {
+    public byte[] obtenerFotoPerfil(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario con ID " + id + " no encontrado"));
 
-        if (usuario.getFotoPerfilPath() == null) {
+        if (usuario.getFotoPerfil() == null) {
             throw new ResourceNotFoundException("El usuario no tiene foto de perfil");
         }
 
-        return fileStorageService.cargarArchivo(usuario.getFotoPerfilPath());
+        return usuario.getFotoPerfil();
+    }
+
+    public String obtenerTipoFotoPerfil(Long id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario con ID " + id + " no encontrado"));
+
+        return usuario.getFotoPerfilTipo() != null ? usuario.getFotoPerfilTipo() : "image/jpeg";
     }
 
     public void eliminarFotoPerfil(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario con ID " + id + " no encontrado"));
 
-        if (usuario.getFotoPerfilPath() != null) {
-            fileStorageService.eliminarArchivo(usuario.getFotoPerfilPath());
-            usuario.setFotoPerfilPath(null);
+        if (usuario.getFotoPerfil() != null) {
+            usuario.setFotoPerfil(null);
             usuario.setFotoPerfilNombre(null);
+            usuario.setFotoPerfilTipo(null);
             usuarioRepository.save(usuario);
         }
     }
