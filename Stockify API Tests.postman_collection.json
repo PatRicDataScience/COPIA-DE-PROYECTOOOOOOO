@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "f78bb072-aac1-4b41-8d0f-1037590f42e3",
+		"_postman_id": "b5585041-4924-4c4d-9289-9597ea0efa07",
 		"name": "Stockify API Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "47751913",
-		"_collection_link": "https://patrick-medina-7937084.postman.co/workspace/Curso-Postman~a6062ffb-efe0-404e-a5a3-4eac43266074/collection/47751913-f78bb072-aac1-4b41-8d0f-1037590f42e3?action=share&source=collection_link&creator=47751913"
+		"_exporter_id": "43541521",
+		"_collection_link": "https://nayeli-5042126.postman.co/workspace/Stocktify~6a378ee0-f2e3-4d57-87dd-c4bd21a04d67/collection/43541521-b5585041-4924-4c4d-9289-9597ea0efa07?action=share&source=collection_link&creator=43541521"
 	},
 	"item": [
 		{
@@ -13,11 +13,14 @@
 				{
 					"name": "1.1 Crear usuario",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Patrick Ricardo\",\n    \"apellido\": \"Medina Reyes\",\n    \"email\": \"patrick@stockify.com\",\n    \"password\": \"PatrickM123\",\n    \"rol\": \"ADMIN\",\n    \"telefono\": 910872694,\n    \"sede\": \"Lima\"\n}",
+							"raw": "{\n    \"nombre\": \"Patrick\",\n    \"apellido\": \"Pinedo\",\n    \"email\": \"patrick@stockify.com\",\n    \"password\": \"Mn123456\",\n    \"rol\": \"COCINERO\",\n    \"telefono\": 983927274,\n    \"sede\": \"Lima\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -25,14 +28,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios",
+							"raw": "http://localhost:8080/auth/signup",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios"
+								"auth",
+								"signup"
 							]
 						}
 					},
@@ -41,6 +45,16 @@
 				{
 					"name": "1.2 Listar usuarios",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE2MTE0OCwiZXhwIjoxNzYzMTY0NzQ4fQ.vnCPktarZohufPl2lZ1TPiaB1HUs5Y4bJGni2z1AuJumAaxg8XCHA9H_g2OpR6obcju4oVlryi0mJ1EqiIGmfw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -63,6 +77,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE2MDc2MCwiZXhwIjoxNzYzMTY0MzYwfQ.XP6GaBw_iINk74-J01J9BQmw3jLfUrWMs4hFGMInKHHd6r83ks5O6yCZ-2PoqyEUMZQFyfzKzv1brXMBCCf1rA\"",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -92,6 +116,16 @@
 				{
 					"name": "1.4 Actualizar parcial de usuario",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwYXRyaWNrQHN0b2NraWZ5LmNvbSIsInJvbGVzIjpbIlJPTEVfQ09DSU5FUk8iXSwiaWF0IjoxNzYzMTY0ODU3LCJleHAiOjE3NjMxNjg0NTd9.ZLYngzvPafSkvFoWRXKvg91mfKe8k5FB-IwSgeriTt6Le-Y_xrfTMTGfKyjN_YaIz4wOITUC5pV_rw24FCRURA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
@@ -104,7 +138,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/1",
+							"raw": "http://localhost:8080/usuarios/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -112,7 +146,7 @@
 							"port": "8080",
 							"path": [
 								"usuarios",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -121,10 +155,20 @@
 				{
 					"name": "1.6. Eliminar usuario",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE2MTU3NCwiZXhwIjoxNzYzMTY1MTc0fQ.LrxpyeA_fYs8DIMInPtVGI0Ijlx-BLnBoO0VfCAroePUbqF7zLYTdlNcP36DWsoLWVONohJUndnU_IXAzaa4ug",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/usuarios/1",
+							"raw": "http://localhost:8080/usuarios/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -132,7 +176,7 @@
 							"port": "8080",
 							"path": [
 								"usuarios",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -142,13 +186,20 @@
 					"name": "1.5 Actualización total de usuario",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwYXRyaWNrLnphcmF0ZUBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0NPQ0lORVJPIl0sImlhdCI6MTc2MzE2NDk1MywiZXhwIjoxNzYzMTY4NTUzfQ.yn6rxeJJeJRzHlmzXP-W0yIOj9om_NkYJoDmnfyBXvq0m715UQUz7sCyEX3aIL_2Zrm3WoKbaZ72YwFNUixWjw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Patrick \",\n    \"apellido\": \"Reyes\",\n    \"email\": \"patrick@stockify.com\",\n    \"password\": \"PatrickM1234\",\n    \"rol\": \"ADMIN\",\n    \"telefono\": 910872695,\n    \"sede\": \"Lima\",\n    \"activo\": true\n\n}",
+							"raw": "{\n    \"nombre\": \"Patrick \",\n    \"apellido\": \"Reyes\",\n    \"email\": \"patrick@stockify.com\",\n    \"password\": \"PatrickM1234\",\n    \"rol\": \"SUPERVISOR\",\n    \"telefono\": 910872695,\n    \"sede\": \"Lima\",\n    \"activo\": true\n\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -156,7 +207,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/1",
+							"raw": "http://localhost:8080/usuarios/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -164,7 +215,7 @@
 							"port": "8080",
 							"path": [
 								"usuarios",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -178,6 +229,16 @@
 				{
 					"name": "2.1 Crear producto",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3MDM0OCwiZXhwIjoxNzYzMTczOTQ4fQ.oWFzr_0DG-nM44Z3lOPnrh-jaoH3cePUyRk6Xy5_3yZ8vZsq4M4dmO1CUJe6vkOyYkcwzn-_9PG5U0TdEslFdg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -206,6 +267,16 @@
 				{
 					"name": "2.2 Listar todos los productos",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE2NDk5OCwiZXhwIjoxNzYzMTY4NTk4fQ.z6MSAyZ5NIr_i_H9vF4mqermRGUvwc7cGC1qW_baqaKv7dT_7fcJvuIr-vuSj4TGIkggBh3dYLFyFKtEs_42Cw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -225,6 +296,16 @@
 				{
 					"name": "2.3 Obtener productos por ID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE2MTc5OCwiZXhwIjoxNzYzMTY1Mzk4fQ.RbmN5DI8rRBD-1aPzOEIow6t6bHUOwqeGvownE2oKtnsFxUAvXCgohmXlb7gTmghH5wLcxsX1iFzy1DTB19isw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -245,6 +326,16 @@
 				{
 					"name": "2.4 Actualizar producto completo",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE2MTkzMywiZXhwIjoxNzYzMTY1NTMzfQ.OPiQbjS7jaHM4GvqcGqMaanHnmUnrnDzZnT3VRkJ7xXmSNj0Npf0QaehdfINT_Sss5tUpdOsPTNA0hoPzn9_JA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -307,7 +398,14 @@
 					},
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE2NDk5OCwiZXhwIjoxNzYzMTY4NTk4fQ.z6MSAyZ5NIr_i_H9vF4mqermRGUvwc7cGC1qW_baqaKv7dT_7fcJvuIr-vuSj4TGIkggBh3dYLFyFKtEs_42Cw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -345,7 +443,14 @@
 					"name": "2.7 Listar productos por estado",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE2NDk5OCwiZXhwIjoxNzYzMTY4NTk4fQ.z6MSAyZ5NIr_i_H9vF4mqermRGUvwc7cGC1qW_baqaKv7dT_7fcJvuIr-vuSj4TGIkggBh3dYLFyFKtEs_42Cw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -401,6 +506,16 @@
 				{
 					"name": "3.1 Crear un nuevo almacén",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3MDM0OCwiZXhwIjoxNzYzMTczOTQ4fQ.oWFzr_0DG-nM44Z3lOPnrh-jaoH3cePUyRk6Xy5_3yZ8vZsq4M4dmO1CUJe6vkOyYkcwzn-_9PG5U0TdEslFdg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -469,7 +584,14 @@
 					"name": "3.4 Filtro de almacenes activos",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE2NDk5OCwiZXhwIjoxNzYzMTY4NTk4fQ.z6MSAyZ5NIr_i_H9vF4mqermRGUvwc7cGC1qW_baqaKv7dT_7fcJvuIr-vuSj4TGIkggBh3dYLFyFKtEs_42Cw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -492,7 +614,14 @@
 					"name": "3.5 Búsqueda flexible por nombre",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE2NDk5OCwiZXhwIjoxNzYzMTY4NTk4fQ.z6MSAyZ5NIr_i_H9vF4mqermRGUvwc7cGC1qW_baqaKv7dT_7fcJvuIr-vuSj4TGIkggBh3dYLFyFKtEs_42Cw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -550,6 +679,16 @@
 				{
 					"name": "3.7 Actualización parcial",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE2NDk5OCwiZXhwIjoxNzYzMTY4NTk4fQ.z6MSAyZ5NIr_i_H9vF4mqermRGUvwc7cGC1qW_baqaKv7dT_7fcJvuIr-vuSj4TGIkggBh3dYLFyFKtEs_42Cw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
@@ -604,6 +743,16 @@
 				{
 					"name": "4.1 Crear receta base",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3MDM0OCwiZXhwIjoxNzYzMTczOTQ4fQ.oWFzr_0DG-nM44Z3lOPnrh-jaoH3cePUyRk6Xy5_3yZ8vZsq4M4dmO1CUJe6vkOyYkcwzn-_9PG5U0TdEslFdg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -726,66 +875,17 @@
 			"name": "Receta Detalle",
 			"item": [
 				{
-					"name": "5.0 Productos de prueba",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"Pepino\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 4.0\n}\n/*\n{\n  \"nombre\": \"Tomate\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 5.0\n}\n\n{\n  \"nombre\": \"Lechuga\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 3.0\n}\n\n{\n  \"nombre\": \"Pepino\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 4.0\n}\n\n*/",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/productos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"productos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "5.0 Receta base de prueba",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nombrePlato\": \"Ensalada Simple\",\n  \"descripcion\": \"Ensalada de tomate, lechuga y pepino\",\n  \"porcionesBase\": 2,\n  \"unidadPorcion\": \"plato\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/recetas-base",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"recetas-base"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "5.1 Agregar una 'receta-detalle\"",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3MDM0OCwiZXhwIjoxNzYzMTczOTQ4fQ.oWFzr_0DG-nM44Z3lOPnrh-jaoH3cePUyRk6Xy5_3yZ8vZsq4M4dmO1CUJe6vkOyYkcwzn-_9PG5U0TdEslFdg",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -816,7 +916,14 @@
 					"name": "5.2 Agregar varias \"receta-detalle\"",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3MDM0OCwiZXhwIjoxNzYzMTczOTQ4fQ.oWFzr_0DG-nM44Z3lOPnrh-jaoH3cePUyRk6Xy5_3yZ8vZsq4M4dmO1CUJe6vkOyYkcwzn-_9PG5U0TdEslFdg",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -848,7 +955,14 @@
 					"name": "5.3 Actualizar un \"receta-detalle\"",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3MDM0OCwiZXhwIjoxNzYzMTczOTQ4fQ.oWFzr_0DG-nM44Z3lOPnrh-jaoH3cePUyRk6Xy5_3yZ8vZsq4M4dmO1CUJe6vkOyYkcwzn-_9PG5U0TdEslFdg",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PATCH",
 						"header": [],
@@ -907,7 +1021,14 @@
 					"name": "5.4 Listar todos los ingredientes de una receta - base",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3MDM0OCwiZXhwIjoxNzYzMTczOTQ4fQ.oWFzr_0DG-nM44Z3lOPnrh-jaoH3cePUyRk6Xy5_3yZ8vZsq4M4dmO1CUJe6vkOyYkcwzn-_9PG5U0TdEslFdg",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -933,127 +1054,18 @@
 			"name": "Movimiento",
 			"item": [
 				{
-					"name": "6.0 Producto de prueba",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"Tomate\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 5.0\n}\n\n/*\n{\n  \"nombre\": \"Tomate\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 5.0\n}\n\n{\n  \"nombre\": \"Lechuga\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 3.0\n}\n*/",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/productos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"productos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "6.0 Almacen de prueba",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"Almacén Principal\",\n  \"ubicacion\": \"Chilca\",\n  \"capacidadMaxima\": 1000,\n  \"responsable\": \"María Rodríguez\"\n\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/almacenes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"almacenes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "6.0 Receta base de prueba",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nombrePlato\": \"Ensalada Simple\",\n  \"descripcion\": \"Ensalada de tomate y lechuga\",\n  \"porcionesBase\": 2,\n  \"unidadPorcion\": \"plato\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/recetas-base",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"recetas-base"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "6.0 Recetas detalle de prueba",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"ingredientes\": [\n        {\n            \"recetaBaseId\": 1,\n            \"productoId\": 1,\n            \"cantidadNecesaria\": 0.5,\n            \"unidadMedida\": \"kg\"\n        },\n        {\n            \"recetaBaseId\": 1,\n            \"productoId\": 2,\n            \"cantidadNecesaria\": 0.3,\n            \"unidadMedida\": \"kg\"\n        }\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/recetas-detalle/bulk",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"recetas-detalle",
-								"bulk"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "6.1 Registrar entrada de stock",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE3MDc5MywiZXhwIjoxNzYzMTc0MzkzfQ.cdO9s5Dsvu9UKK7pEZcYaHSDue9-ubGmJAMyfz8jAbu8nPvCe5LaAMAt6aqS8nVo4psPOww0CBoE9brxUmO5rw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -1084,7 +1096,14 @@
 					"name": "6.2 Registrar salida manual de stock",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE3MDc5MywiZXhwIjoxNzYzMTc0MzkzfQ.cdO9s5Dsvu9UKK7pEZcYaHSDue9-ubGmJAMyfz8jAbu8nPvCe5LaAMAt6aqS8nVo4psPOww0CBoE9brxUmO5rw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -1158,7 +1177,14 @@
 					},
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE2OTM1NSwiZXhwIjoxNzYzMTcyOTU1fQ.1X-4elOQcTNTxEy9xxW71QlCj3qBLR3olT1KReON0M7gGveDKjpLkCL8kqQZEOrIazHeennjEZTe2gKxuYaCNw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -1213,10 +1239,20 @@
 				{
 					"name": "6.6 Filtra movimientos por tipo, producto o fechas",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3MDM0OCwiZXhwIjoxNzYzMTczOTQ4fQ.oWFzr_0DG-nM44Z3lOPnrh-jaoH3cePUyRk6Xy5_3yZ8vZsq4M4dmO1CUJe6vkOyYkcwzn-_9PG5U0TdEslFdg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/movimientos/filtrar?tipo=SALIDA&desde=2025-10-01T00:00:00&hasta=2025-10-31T23:59:59",
+							"raw": "http://localhost:8080/movimientos/filtrar?tipo=SALIDA&desde=2025-11-14T20:40:05.987179&hasta=2025-11-15T20:40:05.987179",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1233,11 +1269,11 @@
 								},
 								{
 									"key": "desde",
-									"value": "2025-10-01T00:00:00"
+									"value": "2025-11-14T20:40:05.987179"
 								},
 								{
 									"key": "hasta",
-									"value": "2025-10-31T23:59:59"
+									"value": "2025-11-15T20:40:05.987179"
 								}
 							]
 						}
@@ -1248,19 +1284,25 @@
 					"name": "6.7 Lista todos los movimientos asociados a un lote",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE2OTM1NSwiZXhwIjoxNzYzMTcyOTU1fQ.1X-4elOQcTNTxEy9xxW71QlCj3qBLR3olT1KReON0M7gGveDKjpLkCL8kqQZEOrIazHeennjEZTe2gKxuYaCNw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/ /movimientos/lote/1",
+							"raw": "http://localhost:8080/movimientos/lote/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								" ",
 								"movimientos",
 								"lote",
 								"1"
@@ -1272,10 +1314,20 @@
 				{
 					"name": "6.8 Anula un movimiento existente",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE3MDc5MywiZXhwIjoxNzYzMTc0MzkzfQ.cdO9s5Dsvu9UKK7pEZcYaHSDue9-ubGmJAMyfz8jAbu8nPvCe5LaAMAt6aqS8nVo4psPOww0CBoE9brxUmO5rw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/movimientos/anular/12",
+							"raw": "http://localhost:8080/movimientos/anular/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1284,33 +1336,6 @@
 							"path": [
 								"movimientos",
 								"anular",
-								"12"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "6.9 Eliminar movimiento por ID",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"tipoMovimiento\": \"ENTRADA\",\n  \"cantidad\": 10.0,\n  \"costoUnitario\": 5.0,\n  \"observacion\": \"Compra de tomates\",\n  \"origen\": \"Proveedor A\",\n  \"productoId\": 1,\n  \"almacenId\": 1\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/movimientos/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"movimientos",
 								"2"
 							]
 						}
@@ -1323,67 +1348,18 @@
 			"name": "Lote",
 			"item": [
 				{
-					"name": "7.0 Almancen de prueba",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Almacén Lima Centro\",\n    \"ubicacion\": \"Av. Argentina 999, Lima\",\n    \"responsable\": \"María Rodríguez\",\n    \"capacidadMaxima\": 3000\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/almacenes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"almacenes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "7.0 Producto de prueba",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"Arroz Integral\",\n  \"descripcion\": \"Paquete de 5 kg\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 12.50\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/productos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"productos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "7.1 Crear lotes",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE3MDc5MywiZXhwIjoxNzYzMTc0MzkzfQ.cdO9s5Dsvu9UKK7pEZcYaHSDue9-ubGmJAMyfz8jAbu8nPvCe5LaAMAt6aqS8nVo4psPOww0CBoE9brxUmO5rw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -1412,11 +1388,21 @@
 				{
 					"name": "7.2 Actualizar lote completo",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE3MDc5MywiZXhwIjoxNzYzMTc0MzkzfQ.cdO9s5Dsvu9UKK7pEZcYaHSDue9-ubGmJAMyfz8jAbu8nPvCe5LaAMAt6aqS8nVo4psPOww0CBoE9brxUmO5rw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"codigoLote\": \"L001-A\",\n  \"costoUnitario\": 11.0,\n  \"costoTotal\": 110.0,\n  \"cantidadInicial\": 10.0,\n  \"cantidadDisponible\": 10.0,\n  \"fechaCompra\": \"2025-10-27 10:00:00\",\n  \"fechaVencimiento\": \"2026-01-31 23:59:59\",\n  \"producto\": { \"id\": 1 },\n  \"almacen\": { \"id\": 1 },\n  \"estado\": \"ACTIVO\"\n}",
+							"raw": "{\n  \"codigoLote\": \"L001-A\",\n  \"costoUnitario\": 11.0,\n  \"costoTotal\": 110.0,\n  \"cantidadInicial\": 10.0,\n  \"cantidadDisponible\": 10.0,\n  \"fechaCompra\": \"2025-10-27 10:00:00\",\n  \"fechaVencimiento\": \"2025-12-01 23:59:59\",\n  \"producto\": { \"id\": 1 },\n  \"almacen\": { \"id\": 1 },\n  \"estado\": \"ACTIVO\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1442,7 +1428,14 @@
 					"name": "7.3 Actualización parcial",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE3MDc5MywiZXhwIjoxNzYzMTc0MzkzfQ.cdO9s5Dsvu9UKK7pEZcYaHSDue9-ubGmJAMyfz8jAbu8nPvCe5LaAMAt6aqS8nVo4psPOww0CBoE9brxUmO5rw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PATCH",
 						"header": [],
@@ -1477,13 +1470,25 @@
 					},
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE3MDc5MywiZXhwIjoxNzYzMTc0MzkzfQ.cdO9s5Dsvu9UKK7pEZcYaHSDue9-ubGmJAMyfz8jAbu8nPvCe5LaAMAt6aqS8nVo4psPOww0CBoE9brxUmO5rw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"tipoMovimiento\": \"ENTRADA\",\n  \"cantidad\": 10.0,\n  \"costoUnitario\": 5.0,\n  \"observacion\": \"Compra de tomates\",\n  \"origen\": \"Proveedor A\",\n  \"productoId\": 1,\n  \"almacenId\": 1\n}"
+							"raw": "{\n  \"tipoMovimiento\": \"ENTRADA\",\n  \"cantidad\": 10.0,\n  \"costoUnitario\": 5.0,\n  \"observacion\": \"Compra de tomates\",\n  \"origen\": \"Proveedor A\",\n  \"productoId\": 1,\n  \"almacenId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8080/lotes",
@@ -1503,7 +1508,14 @@
 					"name": "7.5 Obtener por ID",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE3MDc5MywiZXhwIjoxNzYzMTc0MzkzfQ.cdO9s5Dsvu9UKK7pEZcYaHSDue9-ubGmJAMyfz8jAbu8nPvCe5LaAMAt6aqS8nVo4psPOww0CBoE9brxUmO5rw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -1526,7 +1538,14 @@
 					"name": "7.6 Obtener lotes por producto",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE3MDc5MywiZXhwIjoxNzYzMTc0MzkzfQ.cdO9s5Dsvu9UKK7pEZcYaHSDue9-ubGmJAMyfz8jAbu8nPvCe5LaAMAt6aqS8nVo4psPOww0CBoE9brxUmO5rw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -1550,7 +1569,14 @@
 					"name": "7.7 Obtener lotes disponibles FIFO",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE3MDc5MywiZXhwIjoxNzYzMTc0MzkzfQ.cdO9s5Dsvu9UKK7pEZcYaHSDue9-ubGmJAMyfz8jAbu8nPvCe5LaAMAt6aqS8nVo4psPOww0CBoE9brxUmO5rw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -1574,7 +1600,14 @@
 					"name": "7.8 Obtener lotes próximos a vencer",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE3MDc5MywiZXhwIjoxNzYzMTc0MzkzfQ.cdO9s5Dsvu9UKK7pEZcYaHSDue9-ubGmJAMyfz8jAbu8nPvCe5LaAMAt6aqS8nVo4psPOww0CBoE9brxUmO5rw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -1606,69 +1639,17 @@
 			"name": "Alerta Stock",
 			"item": [
 				{
-					"name": "8.0 Crear producto de prueba",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"Arroz Integral\",\n  \"descripcion\": \"Paquete de 5 kg\",\n  \"unidadMedida\": \"kg\",\n  \"precioUnitario\": 12.50\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/productos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"productos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "8.0 Crear almacén de prueba",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"Almacen Central\",\n  \"ubicacion\": \"Av. Siempre Viva 123\",\n  \"responsable\": \"María Lucila\",\n  \"capacidadMaxima\": 1000\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/almacenes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"almacenes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "8.1 Crear alerta",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYXllbGlAc3RvY2tpZnkuY29tIiwicm9sZXMiOlsiUk9MRV9TVVBFUlZJU09SIl0sImlhdCI6MTc2MzE3MDc5MywiZXhwIjoxNzYzMTc0MzkzfQ.cdO9s5Dsvu9UKK7pEZcYaHSDue9-ubGmJAMyfz8jAbu8nPvCe5LaAMAt6aqS8nVo4psPOww0CBoE9brxUmO5rw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -2137,13 +2118,20 @@
 					"name": "9.1 Ejecutar valorización del periodo",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzdG9ja2lmeS5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTc2MzE3NTk3MSwiZXhwIjoxNzYzMTc5NTcxfQ.HB9VE72AezExsDoE-8CV6KyIlayJns3xmv8SMETMeNb44Q7YtzGnRSc4423yfdT-MDA6tI4ziboAYazPVp0qxg",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"periodo\": \"2025-10\",\n  \"metodoValorizacion\": \"FIFO\",\n  \"usuarioId\": 1\n}",
+							"raw": "{\n  \"periodo\": \"2025-10\",\n  \"metodoValorizacion\": \"FIFO\",\n  \"usuarioId\": 2\n  \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2422,15 +2410,20 @@
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
 				{
-					"name": "10.0 Crear Usuario de prueba",
+					"name": "SignUp",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Patrick Ricardo\",\n    \"apellido\": \"Medina Reyes\",\n    \"email\": \"patrick@stockify.com\",\n    \"password\": \"PatrickM123\",\n    \"rol\": \"ADMIN\",\n    \"telefono\": 910872694,\n    \"sede\": \"Lima\"\n}",
+							"raw": "{\n    \"nombre\": \"Nayeli\",\n    \"apellido\": \"Guerrero\",\n    \"email\": \"nayeli@stockify.com\",\n    \"password\": \"Aa1234567\",\n    \"rol\": \"SUPERVISOR\",\n    \"telefono\": 959214672,\n    \"sede\": \"Lima\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2438,77 +2431,22 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios",
+							"raw": "http://localhost:8080/auth/signup",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios"
+								"auth",
+								"signup"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "10.0  Crear Producto de prueba",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"Aceite Vegetal\",\n  \"descripcion\": \"Botella de 1 litro\",\n  \"unidadMedida\": \"litro\",\n  \"precioUnitario\": 10.5\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/productos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"productos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "10.0 Crear Lote de prueba",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"codigoLote\": \"L001\",\n  \"costoUnitario\": 9.5,\n  \"costoTotal\": 950.0,\n  \"cantidadInicial\": 100.0,\n  \"cantidadDisponible\": 100.0,\n  \"fechaCompra\": \"2025-10-01 10:00:00\",\n  \"fechaVencimiento\": \"2026-10-01 10:00:00\",\n  \"producto\": { \"id\": 1 },\n  \"almacen\": { \"id\": 1 },\n  \"estado\": \"ACTIVO\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/lotes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"lotes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "10.0 Crear una valorización",
+					"name": "SignIn",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -2517,7 +2455,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"periodo\": \"2025-10\",\n  \"metodoValorizacion\": \"FIFO\",\n  \"usuarioId\": 1\n}",
+							"raw": "{\n    \"email\": \"admin@stockify.com\",\n    \"password\": \"Admin123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2525,46 +2463,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/valorizaciones/ejecutar",
+							"raw": "http://localhost:8080/auth/signin",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"valorizaciones",
-								"ejecutar"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "10.0 Crear almacén",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "  {\n    \"nombre\": \"Almacén Lima Centro\",\n    \"ubicacion\": \"Av. Argentina 999, Lima\",\n    \"responsable\": \"María Rodríguez\",\n    \"capacidadMaxima\": 3000\n  }\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/almacenes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"almacenes"
+								"auth",
+								"signin"
 							]
 						}
 					},
