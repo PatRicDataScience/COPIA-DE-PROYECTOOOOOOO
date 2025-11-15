@@ -7,20 +7,33 @@ import com.example.stockify.usuario.dto.UsuarioRequestDTO;
 import com.example.stockify.usuario.infrastructure.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class UsuarioService implements UserDetailsService {
 
     private final UsuarioRepository usuarioRepository;
     private final ModelMapper modelMapper;
+    private final PasswordEncoder passwordEncoder;
+
+
+    public UsuarioService(
+            UsuarioRepository usuarioRepository,
+            ModelMapper modelMapper,
+            @Lazy PasswordEncoder passwordEncoder
+    ) {
+        this.usuarioRepository = usuarioRepository;
+        this.modelMapper = modelMapper;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public List<UsuarioRequestDTO> findAll() {
         return usuarioRepository.findAll()
@@ -61,6 +74,11 @@ public class UsuarioService implements UserDetailsService {
         }
 
         modelMapper.map(dto, existing);
+
+        if (dto.getPassword() != null) {
+            existing.setPassword(passwordEncoder.encode(dto.getPassword()));
+        }
+
         existing = usuarioRepository.save(existing);
         return modelMapper.map(existing, UsuarioRequestDTO.class);
     }
@@ -76,7 +94,7 @@ public class UsuarioService implements UserDetailsService {
         if (dto.getTelefono() != null) existing.setTelefono(dto.getTelefono());
         if (dto.getRol() != null) existing.setRol(dto.getRol());
         if (dto.getSede() != null) existing.setSede(dto.getSede());
-        if (dto.getPassword() != null) existing.setPassword(dto.getPassword());
+        if (dto.getPassword() != null) existing.setPassword(passwordEncoder.encode(dto.getPassword()));
         if (dto.getActivo() != null) existing.setActivo(dto.getActivo());
 
         existing = usuarioRepository.save(existing);

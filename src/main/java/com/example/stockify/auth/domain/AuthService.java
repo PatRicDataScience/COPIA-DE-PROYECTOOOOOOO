@@ -32,14 +32,24 @@ public class AuthService {
             throw new EmailYaRegistradoException("El correo ya está en uso");
         }
 
-        Usuario usuario = usuarioRepository.save(
-                new Usuario(
-                        request.getEmail(),
-                        passwordEncoder.encode(request.getPassword()),
-                        request.getNombre(),
-                        request.getApellido()
-                )
-        );
+        // Validar que el rol sea COCINERO o SUPERVISOR (no se puede registrar como ADMIN)
+        if (request.getRol() == null || request.getRol().equals(com.example.stockify.usuario.domain.Rol.ADMIN)) {
+            throw new com.example.stockify.excepciones.OperacionNoPermitidaException("No se puede registrar un usuario con rol ADMIN");
+        }
+
+        // Crear usuario con todos los campos completos
+        Usuario usuario = new Usuario();
+        usuario.setEmail(request.getEmail());
+        usuario.setPassword(passwordEncoder.encode(request.getPassword()));
+        usuario.setNombre(request.getNombre());
+        usuario.setApellido(request.getApellido());
+        usuario.setRol(request.getRol());
+        usuario.setTelefono(request.getTelefono());
+        usuario.setSede(request.getSede());
+        usuario.setActivo(true);
+        usuario.setFechaRegistro(java.time.ZonedDateTime.now());
+
+        usuario = usuarioRepository.save(usuario);
         var token = jwtService.generateToken(usuario);
         return new TokenResponse(token);
     }

@@ -22,7 +22,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<TokenResponse> signUp(@RequestBody SignUpRequest request){
+    public ResponseEntity<TokenResponse> signUp(@jakarta.validation.Valid @RequestBody SignUpRequest request){
         return ResponseEntity.ok(authService.signUp(request));
     }
 

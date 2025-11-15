@@ -60,16 +60,6 @@ public class Usuario implements UserDetails {
         return this.email;
     }
 
-    public Usuario(String email, String password, String nombre, String apellido) {
-        this.email = email;
-        this.password = password;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        rol = Rol.COCINERO;
-        activo = true;
-        telefono = " ";
-        sede = " ";
-    }
 
     @OneToMany(mappedBy = "usuario")
     private List<Movimiento> movimientos;
