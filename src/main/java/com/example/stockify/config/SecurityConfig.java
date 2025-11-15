@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -26,10 +27,14 @@ public class SecurityConfig {
 
     private final UsuarioService userDetailsService;
     private final JwtAuthorizationFilter jwtFilter;
+    private final CorsConfigurationSource corsConfigurationSource;
 
-    public SecurityConfig(UsuarioService userDetailsService, JwtAuthorizationFilter jwtFilter) {
+    public SecurityConfig(UsuarioService userDetailsService,
+                          JwtAuthorizationFilter jwtFilter,
+                          CorsConfigurationSource corsConfigurationSource) {
         this.userDetailsService = userDetailsService;
         this.jwtFilter = jwtFilter;
+        this.corsConfigurationSource = corsConfigurationSource;
     }
 
     @Bean
@@ -46,8 +51,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // quitar http.cors() para evitar la API deprecada
         return http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authorizeHttpRequests(auth -> auth

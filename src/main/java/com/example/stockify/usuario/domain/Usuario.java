@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.ZonedDateTime;
 import java.util.Collection;
@@ -19,6 +21,7 @@ import java.util.List;
 @Table(name = "usuarios")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +36,11 @@ public class Usuario implements UserDetails {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
+    @JsonIgnore
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "rol")
     private Rol rol;
 
@@ -51,6 +56,7 @@ public class Usuario implements UserDetails {
     @Column(name = "activo")
     private Boolean activo;
 
+    @JsonIgnore
     @Column(name = "foto_perfil")
     private byte[] fotoPerfil;
 
@@ -62,6 +68,9 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (rol == null) {
+            return List.of(new SimpleGrantedAuthority("ROLE_COCINERO")); // rol por defecto
+        }
         return List.of(new SimpleGrantedAuthority("ROLE_" + rol.name()));
     }
 
@@ -69,11 +78,12 @@ public class Usuario implements UserDetails {
         return this.email;
     }
 
-
-    @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<Movimiento> movimientos;
 
-    @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<ValorizacionPeriodo> valorizaciones; // 1:n
 
 }

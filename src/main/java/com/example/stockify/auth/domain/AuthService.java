@@ -51,7 +51,15 @@ public class AuthService {
 
         usuario = usuarioRepository.save(usuario);
         var token = jwtService.generateTokenFromUsuario(usuario);
-        return new TokenResponse(token);
+
+        return TokenResponse.builder()
+                .token(token)
+                .id(usuario.getId())
+                .email(usuario.getEmail())
+                .nombre(usuario.getNombre())
+                .apellido(usuario.getApellido())
+                .rol(usuario.getRol() != null ? usuario.getRol().name() : null)
+                .build();
     }
 
     public TokenResponse signIn(String username, String password){
@@ -74,6 +82,14 @@ public class AuthService {
         );
 
         var token = jwtService.generateTokenFromUsuario(usuario);
-        return new TokenResponse(token);
+
+        return TokenResponse.builder()
+                .token(token)
+                .id(usuario.getId())
+                .email(usuario.getEmail())
+                .nombre(usuario.getNombre())
+                .apellido(usuario.getApellido())
+                .rol(usuario.getRol() != null ? usuario.getRol().name() : null)
+                .build();
     }
 }

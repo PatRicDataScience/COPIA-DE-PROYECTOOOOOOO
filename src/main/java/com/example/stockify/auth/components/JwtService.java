@@ -8,7 +8,13 @@ import org.springframework.stereotype.Component;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
-import java.util.Map;
+
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.JwtException;
+
+
 
 @Component
 public class JwtService {
@@ -34,12 +40,10 @@ public class JwtService {
         Date now = new Date();
         return Jwts.builder()
                 .setSubject(usuario.getEmail())
-                .setClaims(Map.of(
-                        "id", usuario.getId(),
-                        "rol", usuario.getRol() != null ? usuario.getRol().name() : null,
-                        "nombre", usuario.getNombre(),
-                        "apellido", usuario.getApellido()
-                ))
+                .claim("id", usuario.getId())
+                .claim("rol", usuario.getRol() != null ? usuario.getRol().name() : null)
+                .claim("nombre", usuario.getNombre())
+                .claim("apellido", usuario.getApellido())
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + accessTokenExpiration))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
