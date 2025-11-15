@@ -15,16 +15,9 @@ import java.util.stream.Collectors;
 @Slf4j
 public class EmailTemplateService {
 
-    /**
-     * Carga una plantilla HTML y reemplaza los placeholders con los valores proporcionados
-     * 
-     * @param templateName Nombre del archivo de plantilla (ej: "alerta-stock.html")
-     * @param variables Mapa con los placeholders y sus valores (ej: {"PRODUCTO_NOMBRE": "Aceite"})
-     * @return HTML procesado con los valores reemplazados
-     */
+
     public String cargarPlantilla(String templateName, Map<String, String> variables) {
         try {
-            // Cargar el archivo HTML desde resources/templates/email/
             ClassPathResource resource = new ClassPathResource("templates/email/" + templateName);
             
             String html;

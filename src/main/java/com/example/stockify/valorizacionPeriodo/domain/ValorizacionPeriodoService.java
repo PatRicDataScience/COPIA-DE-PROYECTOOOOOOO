@@ -58,12 +58,10 @@ public class ValorizacionPeriodoService {
         LocalDateTime inicio = ym.atDay(1).atStartOfDay();
         LocalDateTime fin = ym.atEndOfMonth().atTime(23, 59, 59);
 
-        // Calcular valor del inventario actual
         double valorInventario = loteRepository.findAll().stream()
                 .mapToDouble(l -> l.getCantidadDisponible() * l.getCostoUnitario())
                 .sum();
 
-        // Calcular costo de ventas del periodo (puede ser 0 si no hubo ventas)
         double costoVentas = movimientoRepository.findAll().stream()
                 .filter(m -> m.getTipoMovimiento() == TipoMovimiento.SALIDA)
                 .filter(m -> m.getFechaMovimiento() != null &&
@@ -72,7 +70,6 @@ public class ValorizacionPeriodoService {
                 .mapToDouble(Movimiento::getCostoTotal)
                 .sum();
 
-        // Asegurar que los valores no sean null (aunque sum() ya retorna 0.0 si está vacío)
         valorInventario = valorInventario < 0 ? 0.0 : valorInventario;
         costoVentas = costoVentas < 0 ? 0.0 : costoVentas;
 
