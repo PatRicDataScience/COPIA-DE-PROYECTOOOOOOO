@@ -22,8 +22,10 @@ import com.example.stockify.producto.infrastructure.ProductoRepository;
 import com.example.stockify.recetaBase.domain.RecetaBase;
 import com.example.stockify.recetaBase.infrastructure.RecetaBaseRepository;
 import com.example.stockify.recetaDetalle.domain.RecetaDetalle;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
@@ -292,16 +294,40 @@ public class MovimientoService {
         return modelMapper.map(movimiento, MovimientoRequestDTO.class);
     }
 
-    public List<MovimientoRequestDTO> filtrarMovimientos(String tipo, Long productoId, Long almacenId, String desde, String hasta) {
-        TipoMovimiento tipoEnum = (tipo != null) ? TipoMovimiento.valueOf(tipo.toUpperCase()) : null;
-        LocalDateTime fechaDesde = (desde != null) ? LocalDateTime.parse(desde) : null;
-        LocalDateTime fechaHasta = (hasta != null) ? LocalDateTime.parse(hasta) : null;
 
-        List<Movimiento> movimientos = movimientoRepository.filtrarMovimientos(tipoEnum, productoId, almacenId, fechaDesde, fechaHasta);
+    public List<MovimientoRequestDTO> filtrarMovimientos(String tipo, Long productoId, Long almacenId, String desde, String hasta) {
+        TipoMovimiento tipoEnum = (tipo != null && !tipo.isBlank()) ? TipoMovimiento.valueOf(tipo.toUpperCase()) : null;
+        LocalDateTime fechaDesde = (desde != null && !desde.isBlank()) ? LocalDateTime.parse(desde) : null;
+        LocalDateTime fechaHasta = (hasta != null && !hasta.isBlank()) ? LocalDateTime.parse(hasta) : null;
+
+        Specification<Movimiento> spec = (root, query, criteriaBuilder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (tipoEnum != null) {
+                predicates.add(criteriaBuilder.equal(root.get("tipoMovimiento"), tipoEnum));
+            }
+            if (productoId != null) {
+                predicates.add(criteriaBuilder.equal(root.get("producto").get("id"), productoId));
+            }
+            if (almacenId != null) {
+                predicates.add(criteriaBuilder.equal(root.get("almacen").get("id"), almacenId));
+            }
+            if (fechaDesde != null) {
+                predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("fechaMovimiento"), fechaDesde));
+            }
+            if (fechaHasta != null) {
+                predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("fechaMovimiento"), fechaHasta));
+            }
+
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+        };
+
+        List<Movimiento> movimientos = movimientoRepository.findAll(spec);
         return movimientos.stream()
                 .map(m -> modelMapper.map(m, MovimientoRequestDTO.class))
                 .collect(Collectors.toList());
     }
+
 
     public List<MovimientoRequestDTO> listarPorLote(Long loteId) {
         List<Movimiento> movimientos = movimientoRepository.findByLoteId(loteId);
